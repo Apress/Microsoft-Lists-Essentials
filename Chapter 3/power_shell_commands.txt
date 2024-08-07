@@ -1,0 +1,54 @@
+# All the PowerShell commands in the chapter
+# These commands will not work as-is. Replace site URLs, template IDs, and other details as necessary.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Disabling built-in templates
+
+Connect-SPOService -Url https://w6l7f-admin.sharepoint.com
+
+Set-SPOTenant -DisableModernListTemplateIds 'C147E310-FFB3-0CDF-B9A3-F427EE0FF1CE'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Re-enable built-in templates
+
+Connect-SPOService -Url https://w6l7f-admin.sharepoint.com
+
+Set-SPOTenant -EnableModernListTemplateIds 'C147E310-FFB3-0CDF-B9A3-F427EE0FF1CE'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Add a custom template
+
+Connect-SPOService -Url https://w6l7f-admin.sharepoint.com
+
+$extracted = Get-SPOSiteScriptFromList -ListUrl "https://w6l7f.sharepoint.com/sites/OperationsLogisticsTeam/Lists/Monthly%20Maintenance%20Audit"
+
+Add-SPOSiteScript -Title "Monthly Maintenance Audit" -Description "Monthly audit list" -Content $extracted
+
+Add-SPOListDesign -Title "Monthly Maintenance Template" - Description "Use this template for monthly maintenance audits" -SiteScripts "f9be2d98-cf28-4596-bdf6-03fce3cad4c5" -ListColor Orange -ListIcon BullseyeT arget -Thumbnail "https://w6l7f.sharepoint.com/sites/OperationsLogisticsTeam/SiteAssets/audit-thumbnail.jpg"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Remove a custom template
+
+Connect-SPOService -Url https://w6l7f-admin.sharepoint.com
+
+Get-SPOListDesign
+
+Remove-SPOListDesign 1b611e13-7787-4ed8-b7b8-5a7e84691937
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Disable Personal Lists
+
+Connect-SPOService -Url https://w6l7f-admin.sharepoint.com
+
+Set-SPOTenant -DisablePersonalListCreation $true
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Re-enable Personal Lists
+
+Set-SPOTenant -DisablePersonalListCreation $false

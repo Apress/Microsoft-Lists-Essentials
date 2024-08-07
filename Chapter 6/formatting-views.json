@@ -1,0 +1,156 @@
+// The final JSON for view formatting scenario in Section 6.11 Formatting Views using JSON
+// --
+// This example JSON will NOT work as-is, unless the column names in your list are exactly same as the ones in this file. Replace list, column, and variable names as necessary.
+// Note: REMOVE the comments section as it makes the overall code invalid
+
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/tile-formatting.schema.json",
+  "height": 273,
+  "width": 254,
+  "hideSelection": false,
+  "fillHorizontally": true,
+  "formatter": {
+    "elmType": "div",
+    "attributes": {
+      "class": "sp-card-container"
+    },
+    "children": [
+      {
+        "elmType": "div",
+        "attributes": {},
+        "customRowAction": {
+          "action": "defaultClick"
+        }
+      },
+      {
+        "elmType": "div",
+        "attributes": {
+          "class": "ms-bgColor-white sp-css-borderColor-neutralLight sp-card-borderHighlight sp-card-subContainer"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-displayColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "txtContent": "[!Title.DisplayName]"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "[$Title]",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content sp-card-highlightedContent",
+                  "role": "heading",
+                  "aria-level": "3"
+                },
+                "txtContent": "=if ([$Title] == '', '–', [$Title])"
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-displayColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "txtContent": "[!EventDate.DisplayName]"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "=if ([$EventDate.displayValue] == '', '–', [$EventDate.displayValue])",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content "
+                },
+                "txtContent": "=if ([$EventDate.displayValue] == '', '–', [$EventDate.displayValue])"
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-displayColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "txtContent": "[!VenueCapacity.DisplayName]"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "=if ([$VenueCapacity.displayValue] == '', '–', [$VenueCapacity.displayValue])",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content "
+                },
+                "txtContent": "=if ([$VenueCapacity.displayValue] == '', '–', [$VenueCapacity.displayValue])"
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-lastTextColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "txtContent": "[!SeatsLeft.DisplayName]"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "=if ([$SeatsLeft.displayValue] == '', '–', [$SeatsLeft.displayValue])",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content "
+                },
+                "style": {
+                  "color": "=if([$SeatsLeft] < 10 && [$SeatsLeft] > 0, '#FF0000', '')"
+                },
+                "txtContent": "=if([$SeatsLeft] < 10 && [$SeatsLeft] > 0, [$SeatsLeft.displayValue]+' (Limited seats)', [$SeatsLeft.displayValue])"
+              },
+              {
+                "elmType": "a",
+                "txtContent": "=if([$SeatsLeft] == 0, 'No seats available', 'Register for Event')",
+                "attributes": {
+                  "title": "You will be taken to an external site",
+                  "class": "=if([$SeatsLeft] == 0, 'ms-fontColor-neutralTertiary ms-bgColor-gray30', 'ms-fontColor-neutralPrimary ms-fontColor-white--hover ms-bgColor-themePrimary--hover')",
+                  "href": "=if([$SeatsLeft] == 0, '#', 'http://example.com/event-registration/'+[$Title])",
+                  "target": "=if([$SeatsLeft] == 0, '_self', '_blank')"
+                },
+                "style": {
+                  "border": "=if([$SeatsLeft] == 0, '0', '1px solid #8a8886')",
+                  "box-sizing": "border-box",
+                  "cursor": "=if([$SeatsLeft] == 0, 'default', 'pointer')",
+                  "display": "block",
+                  "font-size": "14px",
+                  "font-weight": "600",
+                  "height": "36px",
+                  "line-height": "1.4",
+                  "margin-top": "10px",
+                  "padding": "6px 12px 5px",
+                  "text-align": "center",
+                  "text-decoration": "none"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+This validation code will not work as-is. Replace column names and other details as necessary.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Validation to check for email ID for the EmployeeEmail column:
+
+=AND(
+    ISNUMBER(FIND("@", [EmployeeEmail])),
+    ISNUMBER(FIND(".", [EmployeeEmail])),
+    FIND("@", [EmployeeEmail])<FIND(".", [EmployeeEmail]),
+    LEN([EmployeeEmail])>5
+)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+To limit the value entered by users, for the BillValue column:
+
+=[BillValue] < 10
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Date and time column
+
+To accept only future dates:
+
+=[ColumnName] > TODAY() 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Text column
+
+To restrict the column to the 255 characters:
+
+=LEN([ColumnName]) <= 255. 
+
+- - -
+
+To specify that each entry should start with 'A' and end with 'Z':
+
+=AND(LEFT([ColumnName],1)= "A", RIGHT([ColumnName],1)= "Z"). 
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

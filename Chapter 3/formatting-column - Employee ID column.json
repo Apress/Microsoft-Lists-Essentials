@@ -1,0 +1,13 @@
+// This example JSON may NOT work as-is.
+// Note: REMOVE the comments section as it makes the overall code invalid
+
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+    "elmType": "a",
+    "txtContent": "@currentField",
+    "attributes": {
+        "href": "='https://employee-data.com/' + @currentField",
+        "title": "See employee data",
+        "target": "_blank"
+    }
+}
